@@ -1,0 +1,12 @@
+- name: Déployer MariaDB sur le serveur DB
+  hosts: database
+  become: true
+  roles:
+    - database
+
+- name: Déployer PHPMyAdmin sur le serveur Web
+  hosts: phpmyadmin
+  become: true
+  roles:
+    - phpmyadmin
+
