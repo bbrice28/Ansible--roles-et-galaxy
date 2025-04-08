@@ -1,0 +1,20 @@
+---
+- name: Installer Apache, PHP et dépendances
+  apt:
+    name:
+      - apache2
+      - php
+      - php-mysqli
+      - php-zip
+      - php-gd
+      - php-json
+      - php-curl
+      - libapache2-mod-php
+    state: present
+    update_cache: yes
+
+- name: Télécharger PHPMyAdmin
+  get_url:
+    url: https://files.phpmyadmin.net/phpMyAdmin/5.2.2/phpMyAdmin-5.2.2-all-lan>
+    dest: /tmp/phpmyadmin.tar.gz
+
