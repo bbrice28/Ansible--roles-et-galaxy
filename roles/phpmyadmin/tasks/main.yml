@@ -18,3 +18,26 @@
     url: https://files.phpmyadmin.net/phpMyAdmin/5.2.2/phpMyAdmin-5.2.2-all-lan>
     dest: /tmp/phpmyadmin.tar.gz
 
+- name: Extraire l'archive PHPMyAdmin
+  unarchive:
+    src: /tmp/phpmyadmin.tar.gz
+    dest: /var/www/html/
+    remote_src: yes
+
+- name: Vérifier si le dossier PHPMyAdmin existe
+  stat:
+    path: /var/www/html/phpMyAdmin-*
+  register: phpmyadmin_dir
+
+- name: Renommer le dossier PHPMyAdmin
+
+ command: mv /var/www/html/{{ phpmyadmin_dir.stat.path | basename }} /var/www/>
+  when: phpmyadmin_dir.stat.exists == true
+
+- name: Configurer les permissions du dossier PHPMyAdmin
+  file:
+    path: /var/www/html/phpmyadmin
+    owner: www-data
+    group: www-data
+    mode: '0755'
+    recurse: yes
