@@ -21,3 +21,7 @@ deploy_phpmyadmin/
 │       ├── tasks/main.yml
 │       └── defaults/main.yml
 
+
+# Lancer le playbook depuis deploy_phpmyadmin
+
+**ansible-playbook -i inventory deploy_pma.yml**
